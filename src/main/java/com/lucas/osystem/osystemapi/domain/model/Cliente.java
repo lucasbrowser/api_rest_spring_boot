@@ -5,6 +5,7 @@
  */
 package com.lucas.osystem.osystemapi.domain.model;
 
+import com.lucas.osystem.osystemapi.domain.ValidationGroups;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -27,6 +29,7 @@ import javax.validation.constraints.Size;
 
 public class Cliente implements Serializable {
     
+    @NotNull(groups = ValidationGroups.ClienteId.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = true)
