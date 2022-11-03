@@ -48,12 +48,10 @@ public class ClienteController {
     }
     
     @GetMapping("/{clienteId}")
-    public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId){
-        Optional<Cliente> cliente = clienteRepository.findById(clienteId);
-        if(cliente.isPresent()){
-            return ResponseEntity.ok(cliente.get());
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId){      
+        return clienteRepository.findById(clienteId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());        
     }
     
     @PostMapping
